@@ -1,22 +1,26 @@
 import { useState } from "react"
 
 
-function CardAdicionar(props){
+export default function CardAdicionar({adicionarTarefa}){
     const [novaTarefa, setNovaTarefa] = useState("");
 
     function addTask() {
-        props.addTask(setNovaTarefa);
-        setNovaTarefa("")
+        event.preventDefault();
+        if(!!novaTarefa){
+            adicionarTarefa(novaTarefa)
+            setNovaTarefa('')
+        }
     }    
     return(
-        <div>
-            <input
-             placeholder="adicionar tarefa"
-             type="text"
-            value={novaTarefa}
-            onChange={(event) => setNovaTarefa(event.target.value)}
-            />
-            <button onClick={addTask}>Adicionar Tarefa</button>
-        </div>
+       <div>
+             <input 
+            type="text" 
+            placeholder="Adicione uma tarefa" 
+            value={texto} 
+            onChange={(e) => setNovaTarefa(e.target.value)} 
+        />
+        <button onClick={addTask}>Adicionar</button>
+       </div> 
+      
     )
 }
